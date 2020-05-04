@@ -1,5 +1,8 @@
 inline void writeCredentials();
 
+///This is the User Class
+///
+///This class is for users. it has the basic previledges
 class User {
 protected:
 	int id;
