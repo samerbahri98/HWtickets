@@ -15,6 +15,7 @@ int main()
     newClient.signUp();
 
     Ticket newTicket(newClient.id,newAgent.id,"n7eb kammounti ena");
+    newTicket.save();
 
     return 0;
 }

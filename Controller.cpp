@@ -6,6 +6,18 @@
 
 using namespace std;
 
+inline int generateId()
+{
+    ifstream usersFile;
+    int nol = 0;
+    string line;
+    usersFile.open("./tickets.csv");
+    while (getline(usersFile, line))
+        nol++;
+    usersFile.close();
+    return nol++;
+}
+
 inline string statusMap(status p)
 {
     switch (p)
@@ -46,7 +58,8 @@ inline string priorityMap(priority p)
 
 Ticket::Ticket(int client, string content) : client(client), content(content)
 {
-    id = -1;
+
+    id = generateId();
     agent = -1;
     ticketPriority = Medium;
     ticketStatus = New;
@@ -54,7 +67,7 @@ Ticket::Ticket(int client, string content) : client(client), content(content)
 
 Ticket::Ticket(int client, int agent, string content) : client(client), agent(agent), content(content)
 {
-    id = -1;
+    id = generateId();
     ticketPriority = Medium;
     ticketStatus = New;
 };
@@ -74,15 +87,27 @@ Ticket::Ticket(int id,
 void Ticket::save()
 {
     fstream ticketsFile;
-    ticketsFile.open("users.csv", ios::out | ios::app);
+    ticketsFile.open("tickets.csv", ios::out | ios::app);
     ticketsFile << this->id << ","
-              << this->client << ","
-              << this->agent << ","
-              << this->content << ","
-              << priorityMap(this->ticketPriority) << ","
-              << statusMap(this->ticketStatus) << ","
+                << this->client << ","
+                << this->agent << ","
+                << this->content << ","
+                << priorityMap(this->ticketPriority) << ","
+                << statusMap(this->ticketStatus) << ","
 
-              << endl;
+                << endl;
 
     ticketsFile.close();
 }
+/*
+void Ticket::update()
+{
+    fstream ticketsFile;
+    string line;
+    ticketsFile.open("tickets.csv");
+    while (getline(ticketsFile, line))
+    {
+
+    }
+}
+*/
