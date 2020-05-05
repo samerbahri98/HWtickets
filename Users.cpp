@@ -5,7 +5,7 @@
 
 using namespace std;
 
-inline void writeCredentials(string& username, string& password)
+inline void writeCredentials(string &username, string &password)
 {
     cout << "Please write your username" << endl;
     cin >> username;
@@ -19,18 +19,18 @@ User::User()
     int nol = 0;
     string line;
     usersFile.open("./users.csv");
-    while (getline(usersFile, line))nol++;
+    while (getline(usersFile, line))
+        nol++;
     usersFile.close();
     userType = "";
     id = nol++;
     writeCredentials(userName, userPassword);
 };
 
-
-void User::signUp() {
+void User::signUp()
+{
     fstream usersFile;
     usersFile.open("./users.csv", ios::out | ios::app);
     usersFile << this->id << "," << this->userName << "," << this->userPassword << "," << this->userType << endl;
     usersFile.close();
 };
-

@@ -1,25 +1,35 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+
 inline void writeCredentials();
 
 ///This is the User Class
 ///
 ///This class is for users. it has the basic previledges
-class User {
+class User
+{
 protected:
-	int id;
-	std::string userName, userPassword , userType;
+    
+    string userName, userPassword, userType;
 
 public:
-	User();
-	void signUp();
+    int id;
+    User();
+    void signUp();
 
 };
 
-class Agent: protected  User {
-    public:
-    Agent():User(){userType="Agent";};
+class Agent : public User
+{
+public:
+    Agent() : User() { userType = "Agent"; };
 };
 
-class Client: protected User {
-    public:
-    Client():User(){userType="Agent";};
+class Client : public User
+{
+public:
+    Client() : User() { userType = "Client"; };
 };
