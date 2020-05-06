@@ -1,25 +1,51 @@
 #include <iostream>
 #include <string>
+#include <sstream>
+
 
 using namespace std;
 
-enum priority
+typedef enum priority
 {
     Low,
     Medium,
     High,
     Urgent
-};
-enum status
+} priority;
+typedef enum status
 {
     New,
     Open,
     Pending,
     Closed
-};
+} status;
+
+typedef struct Parameters
+{
+    string value;
+    struct Parameters *next;
+} Parameters;
+
 /*
 
 */
+
+
+class CSV
+{
+public:
+    string fileName;
+    CSV(string fileName);
+    void create(string content);
+    void read();
+    void fetch();
+    void update(string content);
+    void update(int line, string content);
+    void remove(string content);
+    void remove(int line);
+};
+
+
 class Ticket
 {
 public:
@@ -39,15 +65,17 @@ public:
     //    void update();
 };
 
+
+/*
 class MenuItem
 {
 public:
-    int id;
-    string parameters[];
+    Parameters * pHead;
     MenuItem *next;
+    MenuItem *head;
 
-    MenuItem();
-    MenuItem(MenuItem *head);
+    MenuItem(Parameters * pHead);
+    MenuItem(Parameters * pHead, MenuItem *head);
 
     void update();
     void remove();
@@ -57,15 +85,21 @@ class Menu
 {
 public:
     MenuItem *head;
-    Menu();
+    Menu(MenuItem *head);
     void display();
     void select();
     void back();
 };
 
-class Queue : public Menu {
+class Queue
+{
+public:
+    Menu menu;
     string fileName, queueName;
     Queue();
-    void fetch();
+    Menu fetch();
+    void update();
     void save();
 };
+
+*/
