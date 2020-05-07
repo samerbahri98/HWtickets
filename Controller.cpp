@@ -14,7 +14,7 @@ inline int generateId()
     ifstream usersFile;
     int nol = 0;
     string line;
-    usersFile.open("./tickets.csv");
+    usersFile.open("tickets.csv");
     while (getline(usersFile, line))
         nol++;
     usersFile.close();
@@ -94,21 +94,39 @@ Ticket::Ticket(int id,
 void Ticket::save()
 {
     stringstream content;
-    content << this->id << " , "
-            << this->client << " , "
-            << this->agent << " , "
-            << priorityMap(this->ticketPriority) << " , "
-            << statusMap(this->ticketStatus) << " , "
+    content << id << " , "
+            << client << " , "
+            << agent << " , "
+            << priorityMap(ticketPriority) << " , "
+            << statusMap(ticketStatus) << " , "
             << " ["
             << " , "
             << this->content << " , "
             << "] "
             << " , "
             << " ";
-    CSV ticketsFile("./tickets.csv");
+    CSV ticketsFile("tickets.csv");
     ticketsFile.create(content.str());
 }
 
+void Ticket::update(){
+    stringstream content;
+    content << id << " , "
+            << client << " , "
+            << agent << " , "
+            << priorityMap(ticketPriority) << " , "
+            << statusMap(ticketStatus) << " , "
+            << " ["
+            << " , "
+            << this->content << " , "
+            << "] "
+            << " , "
+            << " ";
+    CSV ticketsFile("tickets.csv");
+    ticketsFile.update(id,content.str());
+}
+
+//MenuItem
 MenuItem::MenuItem(vector<string> Parameters) : Parameters(Parameters){};
 void MenuItem::display()
 {
@@ -127,7 +145,7 @@ void Menu::display()
 Queue::Queue(string fileName) : fileName(fileName) { matrix = {}; };
 void Queue::fetch()
 {
-    CSV ticketFile("./tickets.csv");
+    CSV ticketFile("tickets.csv");
     ticketFile.fetch(matrix);
 }
 

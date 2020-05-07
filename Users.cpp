@@ -25,7 +25,7 @@ User::User()
 void User::signUp()
 {
     vector<vector<string>> matrix;
-    CSV usersFile("./users.csv");
+    CSV usersFile("users.csv");
     usersFile.fetch(matrix);
     id = matrix.size();
     matrix.clear();
@@ -38,10 +38,9 @@ void User::signUp()
 void User::login()
 {
     vector<vector<string>> matrix;
-    CSV usersFile("./users.csv");
+    CSV usersFile("users.csv");
     usersFile.fetch(matrix);
     bool userExists = false, passExists = false;
-    cout << matrix.size() << "x" << matrix[0].size() << endl;
     for (int i = 0; i < matrix.size(); i++)
     {
         if (userName.compare(matrix[i][1]) == 0)

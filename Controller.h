@@ -47,7 +47,7 @@ public:
            priority ticketPriority,
            string content);
     void save();
-    //    void update();
+    void update();
 };
 
 class MenuItem

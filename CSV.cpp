@@ -25,7 +25,7 @@ void CSV::fetch(vector<vector<string>> &matrix)
     string line, content, priority, status;
     fstream file;
     vector<string> lineArray;
-    file.open(this->fileName, ios::in);
+    file.open(fileName, ios::in);
     while (getline(file, line))
     {
         stringstream ss(line);
@@ -50,7 +50,6 @@ void CSV::fetch(vector<vector<string>> &matrix)
                 {
                     longString = false;
                     lineArray.push_back(tempString.str());
-                    cout << tempString.str() << endl;
                     tempString << endl;
                 }
             }
@@ -61,3 +60,41 @@ void CSV::fetch(vector<vector<string>> &matrix)
     }
     file.close();
 };
+
+// void CSV::pop(int lineNum)
+// {
+//     fstream file, tempFile;
+//     file.open(fileName, ios::in);
+//     tempFile.open("temp.csv", ios::out);
+//     string line;
+//     int i = -1;
+//     while (getline(file, line))
+//     {
+//         i++;
+//         if (i != lineNum)
+//             tempFile << line << endl;
+//     }
+//     file.close();
+//     tempFile.close();
+//     remove(fileName.c_str());
+// }
+
+void CSV::update(int lineNum, string content)
+{
+    fstream file, tempFile;
+    file.open(fileName, ios::in);
+    tempFile.open("temp.csv", ios::out);
+    string line;
+    int i = -1;
+    while (getline(file, line))
+    {
+        i++;
+        if (i != lineNum)
+            tempFile << line << endl;
+        else
+            tempFile << content << endl;
+    }
+    file.close();
+    tempFile.close();
+    remove(fileName.c_str());
+}

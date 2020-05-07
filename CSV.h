@@ -10,10 +10,7 @@ public:
     string fileName;
     CSV(string fileName);
     void create(string content);
-    void read();
     void fetch(vector<vector<string>> &matrix);
-    void update(string content);
-    void update(int line, string content);
-    void remove(string content);
-    void remove(int line);
+    void update(int lineNum, string content);
+//    void pop(int lineNum);
 };

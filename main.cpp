@@ -15,9 +15,15 @@ int main()
     Ticket newTicket(newClient.id,-1,"n7eb kammounti barcha ena");
     newTicket.save();
 
-    Queue tickets ("./tickets.csv");
+    Queue tickets ("tickets.csv");
+    tickets.fetch();
+    tickets.display();
+    cout << "===========" << endl;
+    newTicket.ticketPriority=Low;
+    newTicket.update();
     tickets.fetch();
     tickets.display();
 
+    return 0;
     
 }
