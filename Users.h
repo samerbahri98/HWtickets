@@ -19,7 +19,7 @@ public:
     int id;
     User();
     void signUp();
-
+    void login();
 };
 
 class Agent : public User

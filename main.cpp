@@ -10,24 +10,14 @@ using namespace std;
 
 int main()
 {
-    
-    Agent newAgent;
-    newAgent.signUp();
     Client newClient;
-    newClient.signUp();
-    Ticket newTicket(newClient.id,newAgent.id,"n7eb kammounti barcha ena");
+    newClient.login();
+    Ticket newTicket(newClient.id,-1,"n7eb kammounti barcha ena");
     newTicket.save();
 
-    CSV ticketFile("./tickets.csv");
+    Queue tickets ("./tickets.csv");
+    tickets.fetch();
+    tickets.display();
 
-    ticketFile.fetch();
-
-
-    // string line;
-    // fstream tickets;
-    // tickets.open("./tickets.csv", ios::in);
-    // while (getline(tickets, line))cout<<line<<endl;
-    // tickets.close();
-    // return 0;
     
 }

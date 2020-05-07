@@ -3,7 +3,7 @@
 #include <sstream>
 #include <fstream>
 #include <vector>
-
+#include "CSV.h"
 #include "Controller.h"
 
 using namespace std;
@@ -60,34 +60,6 @@ inline string priorityMap(priority p)
 };
 
 //cvs class
-CSV::CSV(string fileName) : fileName(fileName) {}
-
-void CSV::create(string content)
-{
-    fstream file;
-    file.open(this->fileName, ios::out | ios::app);
-    file << content << endl;
-    file.close();
-}
-
-void CSV::fetch()
-{
-    int id, client, agent;
-    string line, content, priority, status;
-    fstream file;
-    // ss >> id >> comma >> client >> comma >> agent >> comma >> content >> comma >> priority >> comma >> status >> comma;
-    file.open(this->fileName, ios::in);
-    while (getline(file, line))
-    {
-        stringstream ss(line);
-        string word;
-        while(ss >> word)if(word!=",") cout << word<< "| \t";
-        cout << endl;
-        // ss << line;
-        // cout << id << "\t" << client << "\t" << agent << "\t" << content << "\t" << priority << "\t" << status << endl;
-    }
-    file.close();
-};
 
 //ticket class
 
@@ -125,63 +97,48 @@ void Ticket::save()
     content << this->id << " , "
             << this->client << " , "
             << this->agent << " , "
-            << this->content << " , "
             << priorityMap(this->ticketPriority) << " , "
-            << statusMap(this->ticketStatus) << " , ";
+            << statusMap(this->ticketStatus) << " , "
+            << " ["
+            << " , "
+            << this->content << " , "
+            << "] "
+            << " , "
+            << " ";
     CSV ticketsFile("./tickets.csv");
     ticketsFile.create(content.str());
 }
-/*
-MenuItem::MenuItem(Parameters *pHead) : pHead(pHead)
+
+MenuItem::MenuItem(vector<string> Parameters) : Parameters(Parameters){};
+void MenuItem::display()
 {
-    head = this;
-    next = nullptr;
-};
+    for (int i = 0; i < Parameters.size(); i++)
+        cout << Parameters[i] << "|\t";
+    cout << endl;
+}
 
-MenuItem::MenuItem(Parameters *pHead, MenuItem *head) : pHead(pHead), head(head)
-{
-    MenuItem *p = head;
-    //    for(MenuItem*p=head;p=nullptr;p=p->next)
-    while (p->next != nullptr)
-        p = p->next;
-    p->next = this;
-};
-
-Menu::Menu(MenuItem *head) : head(head){};
-
+Menu::Menu(vector<MenuItem> rows) : rows(rows){};
 void Menu::display()
 {
-    for (MenuItem *m = this->head; m != nullptr; m = m->next)
-    {
-        for (Parameters *p = m->pHead; p != nullptr; p = p->next)
-        {
-            cout << p->value << "\t";
-        };
-        cout << endl;
-    }
-};
-
-
-
-Queue::Queue(){
-    fileName="tickets.csv";
-    menu=fetch();
-
-};
-
-Menu Queue::fetch(){
-
-};
-
-
-void Ticket::update()
-{
-    fstream ticketsFile;
-    string line;
-    ticketsFile.open("tickets.csv");
-    while (getline(ticketsFile, line))
-    {
-
-    }
+    for (int i = 0; i < rows.size(); i++)
+        rows[i].display();
 }
-*/
+
+Queue::Queue(string fileName) : fileName(fileName) { matrix = {}; };
+void Queue::fetch()
+{
+    CSV ticketFile("./tickets.csv");
+    ticketFile.fetch(matrix);
+}
+
+Queue::~Queue(){matrix.clear();};
+
+void Queue::display()
+{
+    for (int i = 0; i < matrix.size(); i++)
+    {
+        for (int j = 0; j < matrix[i].size(); j++)
+            cout << matrix[i][j] << "|\t";
+        cout << endl;
+    };
+};

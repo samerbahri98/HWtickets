@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 #include <sstream>
-
+#include <vector>
 
 using namespace std;
 
@@ -31,21 +31,6 @@ typedef struct Parameters
 */
 
 
-class CSV
-{
-public:
-    string fileName;
-    CSV(string fileName);
-    void create(string content);
-    void read();
-    void fetch();
-    void update(string content);
-    void update(int line, string content);
-    void remove(string content);
-    void remove(int line);
-};
-
-
 class Ticket
 {
 public:
@@ -65,41 +50,32 @@ public:
     //    void update();
 };
 
-
-/*
 class MenuItem
 {
 public:
-    Parameters * pHead;
-    MenuItem *next;
-    MenuItem *head;
-
-    MenuItem(Parameters * pHead);
-    MenuItem(Parameters * pHead, MenuItem *head);
-
-    void update();
-    void remove();
+    vector<string> Parameters;
+    MenuItem(vector<string> Parameters);
+    void display();
 };
 
 class Menu
 {
 public:
-    MenuItem *head;
-    Menu(MenuItem *head);
+    vector<MenuItem> rows;
+    Menu(vector<MenuItem> rows);
     void display();
-    void select();
-    void back();
+    //    void select();
+    //    void back();
 };
 
 class Queue
 {
 public:
-    Menu menu;
-    string fileName, queueName;
-    Queue();
-    Menu fetch();
-    void update();
-    void save();
-};
+    string fileName;
 
-*/
+    vector<vector<string>>matrix;
+    Queue(string fileName);
+    ~Queue();
+    void fetch();
+    void display();
+};
