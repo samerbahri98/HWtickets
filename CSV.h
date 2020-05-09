@@ -4,6 +4,8 @@
 #include <vector>
 
 using namespace std;
+
+inline int generateId(string fileName);
 class CSV
 {
 public:
@@ -12,5 +14,6 @@ public:
     void create(string content);
     void fetch(vector<vector<string>> &matrix);
     void update(int lineNum, string content);
+    int generateId();
 //    void pop(int lineNum);
 };

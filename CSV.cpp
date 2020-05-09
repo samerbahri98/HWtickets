@@ -7,6 +7,8 @@
 
 using namespace std;
 
+
+
 CSV::CSV(string fileName) : fileName(fileName) {}
 
 void CSV::create(string content)
@@ -97,4 +99,16 @@ void CSV::update(int lineNum, string content)
     file.close();
     tempFile.close();
     remove(fileName.c_str());
+    rename("temp.csv",fileName.c_str());
+}
+
+int CSV::generateId()
+{
+
+    vector<vector<string>> matrix;
+    this->fetch(matrix);
+    int i = matrix.size();
+    matrix.clear();
+    return i;
+
 }

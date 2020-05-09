@@ -9,17 +9,7 @@
 using namespace std;
 
 //generic functions
-inline int generateId()
-{
-    ifstream usersFile;
-    int nol = 0;
-    string line;
-    usersFile.open("tickets.csv");
-    while (getline(usersFile, line))
-        nol++;
-    usersFile.close();
-    return nol++;
-}
+
 
 inline string statusMap(status p)
 {
@@ -66,7 +56,8 @@ inline string priorityMap(priority p)
 Ticket::Ticket(int client, string content) : client(client), content(content)
 {
 
-    id = generateId();
+    CSV ticketsFile("tickets.csv");
+    id = ticketsFile.generateId();
     agent = -1;
     ticketPriority = Medium;
     ticketStatus = New;
@@ -74,7 +65,8 @@ Ticket::Ticket(int client, string content) : client(client), content(content)
 
 Ticket::Ticket(int client, int agent, string content) : client(client), agent(agent), content(content)
 {
-    id = generateId();
+    CSV ticketsFile("tickets.csv");
+    id = ticketsFile.generateId();
     ticketPriority = Medium;
     ticketStatus = New;
 };

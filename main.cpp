@@ -23,7 +23,6 @@ int main()
     newTicket.update();
     tickets.fetch();
     tickets.display();
-
     return 0;
     
 }

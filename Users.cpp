@@ -24,11 +24,8 @@ User::User()
 
 void User::signUp()
 {
-    vector<vector<string>> matrix;
     CSV usersFile("users.csv");
-    usersFile.fetch(matrix);
-    id = matrix.size();
-    matrix.clear();
+    id = usersFile.generateId();
     stringstream ss;
     ss << id << " , " << userName << " , " << userPassword << " , " << userType << " , ";
     usersFile.create(ss.str());
