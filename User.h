@@ -22,14 +22,5 @@ public:
     void login();
 };
 
-class Agent : public User
-{
-public:
-    Agent() : User() { userType = "Agent"; };
-};
 
-class Client : public User
-{
-public:
-    Client() : User() { userType = "Client"; };
-};
+

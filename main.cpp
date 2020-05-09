@@ -3,16 +3,18 @@
 #include <vector>
 #include <fstream>
 
-#include "Users.h"
-#include "Controller.h"
+#include "Client.h"
+#include "Ticket.h"
+#include "Queue.h"
 
 using namespace std;
 
 int main()
 {
+    
     Client newClient;
     newClient.login();
-    Ticket newTicket(newClient.id,-1,"n7eb kammounti barcha ena");
+    Ticket newTicket(newClient.id,-1,"n7eb kammounti barcha ena","yeeeae");
     newTicket.save();
 
     Queue tickets ("tickets.csv");
