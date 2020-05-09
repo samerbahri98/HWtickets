@@ -11,7 +11,6 @@ public:
     string message;
     Menu(vector<string> rows);
     Menu(vector<string> rows , string message);
-    void display();
-    //    void select();
+    void display(int &option);
     //    void back();
 };

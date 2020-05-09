@@ -44,6 +44,10 @@ public:
            string content,
            string title);
     void save();
-    void updateInput();
+    void updateInput(int agentId);
     void update();
+    void accept(int agentId);
+    void changePriority();
+    void changeStatus();
+    void close(int agentId);
 };
