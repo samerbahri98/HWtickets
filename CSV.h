@@ -1,3 +1,6 @@
+#ifndef CSV_H
+#define CSV_H
+
 #include <iostream>
 #include <string>
 #include <sstream>
@@ -17,3 +20,5 @@ public:
     int generateId();
 //    void pop(int lineNum);
 };
+
+#endif // CSV_H

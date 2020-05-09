@@ -1,3 +1,6 @@
+#ifndef TICKET_H
+#define TICKET_H
+
 #include <iostream>
 #include <string>
 #include <sstream>
@@ -51,3 +54,4 @@ public:
     void changeStatus();
     void close(int agentId);
 };
+#endif //TICKET_H

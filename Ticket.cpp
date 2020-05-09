@@ -140,6 +140,7 @@ void Ticket::changePriority()
 {
     vector<string> possibleChanges = {"Urgent", "High", "Medium", "Low"};
     Menu possibleChangesMenu(possibleChanges);
+    possibleChangesMenu.display(selector);
     switch (selector)
     {
     case 0:
@@ -171,6 +172,7 @@ void Ticket::changeStatus()
 {
     vector<string> possibleChanges = {"New", "Open", "Pending", "Closed"};
     Menu possibleChangesMenu(possibleChanges);
+    possibleChangesMenu.display(selector);
     switch (selector)
     {
     case 0:
@@ -194,6 +196,7 @@ void Ticket::updateInput(int agentId)
 {
     vector<string> possibleChanges = {"Accept", "Change Priority", "Change Status", "Close"};
     Menu possibleChangesMenu(possibleChanges);
+    possibleChangesMenu.display(selector);
     switch (selector)
     {
     case 0:

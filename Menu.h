@@ -1,3 +1,6 @@
+#ifndef MENU_H
+#define MENU_H
+
 #include <iostream>
 #include <vector>
 #include <string>
@@ -14,3 +17,5 @@ public:
     void display(int &option);
     //    void back();
 };
+
+#endif // MENU_H

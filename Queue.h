@@ -1,3 +1,6 @@
+#ifndef QUEUE_H
+#define QUEUE_H
+
 #include <iostream>
 #include <string>
 #include <vector>
@@ -15,3 +18,5 @@ public:
     void fetch();
     void display();
 };
+
+#endif //QUEUE_H

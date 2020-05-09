@@ -12,6 +12,10 @@
 
 using namespace std;
 
+Menu LoginMenu(LoginMenuItems,pleaseSelect);
+
+int selector =0;
+
 void areYouSure(string that){
     vector<string> yesNo = {"Yes","No"};
     Menu YesNoMenu (yesNo, "Are your sure that you want to " + that + "?");
