@@ -17,6 +17,7 @@ public:
     ~Queue();
     void fetch();
     void display();
+    void filter(int column,string value);
 };
 
 #endif //QUEUE_H

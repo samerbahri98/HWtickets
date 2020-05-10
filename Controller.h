@@ -4,7 +4,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
-
+#include "User.h"
 #include "Menu.h"
 
 using namespace std;
@@ -12,6 +12,9 @@ using namespace std;
 void writeCredentials(string &username, string &password);
 
 extern int selector;
+
+extern bool isLoggedIn;
+
 const vector<string> LoginMenuItems = {"Login as a Client",
                                  "Login as an Agent",
                                  "Login as an Admin",
@@ -21,11 +24,10 @@ const vector<string> LoginMenuItems = {"Login as a Client",
 
 const string pleaseSelect = "Please type the index of the option you wish to click";
 
+
+User* LoginMenuSelection(int selector);
 extern Menu LoginMenu;
-
-
 
 void areYouSure(string that);
 
-int LoginMenuSelection(int selector);
 

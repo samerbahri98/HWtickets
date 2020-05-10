@@ -55,6 +55,7 @@ inline string priorityMap(priority p)
 
 Ticket::Ticket(int client):client(client)
 {
+    cin.ignore(); // BUG: the 1st input is being skipped
     cout << "Please write the title of your ticket" << endl;
     getline(cin,title);
     cout << "Please describe your ticket" << endl;

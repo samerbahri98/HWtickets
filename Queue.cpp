@@ -9,7 +9,7 @@ using namespace std;
 Queue::Queue(string fileName) : fileName(fileName) { matrix = {}; };
 void Queue::fetch()
 {
-    CSV ticketFile("tickets.csv");
+    CSV ticketFile(fileName);
     ticketFile.fetch(matrix);
 }
 
@@ -24,3 +24,14 @@ void Queue::display()
         cout << endl;
     };
 };
+
+void Queue::filter(int column, string value){
+    for (int i = 0; i < matrix.size(); i++)
+    {
+        for (int j = 0; j < matrix[i].size(); j++)
+            if(value.compare(matrix[i][column])==0)
+            cout << matrix[i][j] << "|\t";
+        cout << endl;
+    };
+}
+

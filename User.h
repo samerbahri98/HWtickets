@@ -16,13 +16,16 @@ class User
 {
 protected:
     
-    string userName, userPassword, userType;
+    string userName, userPassword;
 
 public:
     int id;
+    string userType;
     User(string userName,string userPassword);
+    User(const User *U);
     void signUp();
     void login();
+    virtual void mainMenuDisplay();
 };
 
 

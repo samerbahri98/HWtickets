@@ -11,6 +11,8 @@ class Agent : public User
 {
 public:
     Agent(string username,string password);
+    Agent(User U);
+    void mainMenuDisplay() override;
 };
 
 #endif // AGENT_H

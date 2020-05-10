@@ -21,46 +21,47 @@ void writeCredentials(string &username, string &password)
     getline(cin, password);
 };
 
-
-Menu LoginMenu(LoginMenuItems,pleaseSelect);
-
-int selector =0;
-
-void areYouSure(string that){
-    vector<string> yesNo = {"Yes","No"};
-    Menu YesNoMenu (yesNo, "Are your sure that you want to " + that + "?");
-    YesNoMenu.display(selector);
-}
-
-int LoginMenuSelection(int selector)
+User *LoginMenuSelection(int selector)
 {
-    cin.ignore();
-    string username,password;
-    writeCredentials(username,password);
-    Client newClient(username,password);
-    Agent newAgent(username,password);
-
+    cin.ignore(); // BUG: the 1st input is being skipped
+    string username, password;
+    writeCredentials(username, password);
+    User *newUser = new User(username,password);
 
     switch (selector)
     {
     case 0:
-
-        newClient.login();
-        return newClient.id;
+        newUser->userType="Client";
+        newUser->login();
         break;
     case 1:
-        newAgent.login();
-        return newAgent.id;
+        newUser->userType="Agent";
+        newUser->login();
         break;
     case 3:
-        newClient.signUp();
-        return newClient.id;
+        newUser->userType="Client";
+        newUser->signUp();
         break;
     case 4:
-        newAgent.signUp();
-        return newAgent.id;
+        newUser->userType="Agent";
+        newUser->signUp();
         break;
     default:
+        return nullptr;
         break;
     }
+    return newUser;
 };
+Menu LoginMenu(LoginMenuItems, pleaseSelect);
+
+int selector = 0;
+
+bool isLoggedIn = false;
+
+void areYouSure(string that)
+{
+    vector<string> yesNo = {"Yes", "No"};
+    Menu YesNoMenu(yesNo, "Are your sure that you want to " + that + "?");
+    YesNoMenu.display(selector);
+}
+

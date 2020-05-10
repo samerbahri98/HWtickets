@@ -4,6 +4,9 @@
 #include <fstream>
 
 #include "Client.h"
+#include "Agent.h"
+#include "Client.h"
+#include "Admin.h"
 #include "Ticket.h"
 #include "Queue.h"
 #include "Controller.h"
@@ -14,11 +17,18 @@ int main()
 {
     //authentification sequence
     LoginMenu.display(selector);
-    int globalId= LoginMenuSelection(selector);
-    
-    Ticket newTicket(globalId);
-    newTicket.save();
-    newTicket.updateInput(globalId);
+    Agent* loggedAgent;
+    Client* loggedClient;
+    // Admin* loggedAdmin;
+    User* loggedUser= new User(LoginMenuSelection(selector));
+    if (loggedUser->userType!="") isLoggedIn=true;
+    if(loggedUser->userType=="Agent") loggedUser = new Agent(loggedUser);
+    if(loggedUser->userType=="Client") loggedUser = new Client(loggedUser);
+    while(isLoggedIn)loggedUser->mainMenuDisplay();
+
+    // Ticket newTicket(LoggedUser->id);
+    // newTicket.save();
+    // newTicket.updateInput(LoggedUser->id);
 
 
     //

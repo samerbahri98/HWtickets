@@ -4,13 +4,22 @@
 #include <sstream>
 #include <vector>
 #include "User.h"
+#include "Menu.h"
 #include "CSV.h"
 
 using namespace std;
 
+User::User(string userName, string userPassword) : userName(userName), userPassword(userPassword)
+{
+    id = -1;
+}
 
-User::User(string userName, string userPassword):userName(userName),userPassword(userPassword){
-    id=-1;
+User::User(const User *U)
+{
+    id = U->id;
+    userType = U->userType;
+    userName = U->userName;
+    userPassword = U->userPassword;
 }
 
 void User::signUp()
@@ -36,11 +45,12 @@ void User::login()
             userExists = true;
             if (userPassword.compare(matrix[i][2]) == 0)
             {
-                if(userType.compare(matrix[i][3]))
-                passExists=false;
-                else{
-                passExists = true;
-                id = stoi(matrix[i][0]);
+                if (userType.compare(matrix[i][3]))
+                    passExists = false;
+                else
+                {
+                    passExists = true;
+                    id = stoi(matrix[i][0]);
                 }
             }
             else
@@ -55,9 +65,14 @@ void User::login()
         cout << "user doesn't exist" << endl;
         exit(EXIT_FAILURE);
     }
-        if (!(passExists))
+    if (!(passExists))
     {
         cout << "wrong password" << endl;
         exit(EXIT_FAILURE);
     }
 };
+
+void User::mainMenuDisplay()
+{
+    return;
+}
