@@ -13,14 +13,21 @@ using namespace std;
 int main()
 {
     //authentification sequence
-    // LoginMenu.display(selector);
+    LoginMenu.display(selector);
+    int globalId= LoginMenuSelection(selector);
+    
+    Ticket newTicket(globalId);
+    newTicket.save();
+    newTicket.updateInput(globalId);
+
+
     //
     // Client newClient;
     // newClient.login();
-    Ticket newTicket(8, -1, "n7rcha ena", "yeeeae");
-    newTicket.save();
+    // Ticket newTicket(8, -1, "n7rcha ena", "yeeeae");
+    // newTicket.save();
 
-    newTicket.updateInput(10);
+    // newTicket.updateInput(10);
     // Queue tickets("tickets.csv");
     // tickets.fetch();
     // tickets.display();

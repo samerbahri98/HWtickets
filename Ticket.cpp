@@ -53,23 +53,20 @@ inline string priorityMap(priority p)
 
 //ticket class
 
-Ticket::Ticket(int client, string content, string title) : client(client), content(content), title(title)
+Ticket::Ticket(int client):client(client)
 {
-
+    cout << "Please write the title of your ticket" << endl;
+    getline(cin,title);
+    cout << "Please describe your ticket" << endl;
+    getline(cin,content);
     CSV ticketsFile("tickets.csv");
     id = ticketsFile.generateId();
     agent = -1;
     ticketPriority = Medium;
     ticketStatus = New;
+    cout << "Thank you for reaching out, our agents will look into your issue"<< endl;
 };
 
-Ticket::Ticket(int client, int agent, string content, string title) : client(client), agent(agent), content(content), title(title)
-{
-    CSV ticketsFile("tickets.csv");
-    id = ticketsFile.generateId();
-    ticketPriority = Medium;
-    ticketStatus = New;
-};
 Ticket::Ticket(int id,
                int client,
                int agent,

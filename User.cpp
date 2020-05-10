@@ -8,19 +8,10 @@
 
 using namespace std;
 
-inline void writeCredentials(string &username, string &password)
-{
-    cout << "Please write your username" << endl;
-    getline(cin, username);
-    cout << "Please write your password" << endl;
-    getline(cin, password);
-};
 
-User::User()
-{
-    id = -1;
-    writeCredentials(userName, userPassword);
-};
+User::User(string userName, string userPassword):userName(userName),userPassword(userPassword){
+    id=-1;
+}
 
 void User::signUp()
 {
@@ -45,8 +36,12 @@ void User::login()
             userExists = true;
             if (userPassword.compare(matrix[i][2]) == 0)
             {
+                if(userType.compare(matrix[i][3]))
+                passExists=false;
+                else{
                 passExists = true;
                 id = stoi(matrix[i][0]);
+                }
             }
             else
             {

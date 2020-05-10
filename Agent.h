@@ -10,7 +10,7 @@ using namespace std;
 class Agent : public User
 {
 public:
-    Agent() : User() { userType = "Agent"; };
+    Agent(string username,string password);
 };
 
 #endif // AGENT_H

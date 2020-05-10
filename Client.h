@@ -8,7 +8,7 @@
 class Client : public User
 {
 public:
-    Client() : User() { userType = "Client"; };
+    Client(string username,string password);
 };
 
 #endif //CLIENT_H

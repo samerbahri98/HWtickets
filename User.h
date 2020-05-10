@@ -7,7 +7,7 @@
 using namespace std;
 
 
-inline void writeCredentials();
+
 
 ///This is the User Class
 ///
@@ -20,7 +20,7 @@ protected:
 
 public:
     int id;
-    User();
+    User(string userName,string userPassword);
     void signUp();
     void login();
 };

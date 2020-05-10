@@ -29,7 +29,6 @@ typedef struct Parameters
     struct Parameters *next;
 } Parameters;
 
-
 class Ticket
 {
 public:
@@ -37,8 +36,7 @@ public:
     status ticketStatus;
     priority ticketPriority;
     string content, title;
-    Ticket(int client, string content , string title);
-    Ticket(int client, int agent, string content, string title);
+    Ticket(int client);
     Ticket(int id,
            int client,
            int agent,

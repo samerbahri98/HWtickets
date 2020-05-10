@@ -9,6 +9,8 @@
 
 using namespace std;
 
+void writeCredentials(string &username, string &password);
+
 extern int selector;
 const vector<string> LoginMenuItems = {"Login as a Client",
                                  "Login as an Agent",
@@ -20,6 +22,8 @@ const vector<string> LoginMenuItems = {"Login as a Client",
 const string pleaseSelect = "Please type the index of the option you wish to click";
 
 extern Menu LoginMenu;
+
+
 
 void areYouSure(string that);
 
