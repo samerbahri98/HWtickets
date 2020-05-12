@@ -37,7 +37,6 @@ void CSV::fetch(vector<vector<string>> &matrix)
         tempString2 << "";
         while (ss >> word)
         {
-
             if (word != ",")
             {
                 if ((!longString) && (word != "["))
@@ -52,34 +51,15 @@ void CSV::fetch(vector<vector<string>> &matrix)
                 {
                     longString = false;
                     lineArray.push_back(tempString.str());
-                    tempString << endl;
                 }
             }
         }
-
         matrix.push_back(lineArray);
         lineArray = {};
     }
     file.close();
 };
 
-// void CSV::pop(int lineNum)
-// {
-//     fstream file, tempFile;
-//     file.open(fileName, ios::in);
-//     tempFile.open("temp.csv", ios::out);
-//     string line;
-//     int i = -1;
-//     while (getline(file, line))
-//     {
-//         i++;
-//         if (i != lineNum)
-//             tempFile << line << endl;
-//     }
-//     file.close();
-//     tempFile.close();
-//     remove(fileName.c_str());
-// }
 
 void CSV::update(int lineNum, string content)
 {

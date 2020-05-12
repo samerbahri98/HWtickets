@@ -13,7 +13,7 @@ void Queue::fetch()
     ticketFile.fetch(matrix);
 }
 
-Queue::~Queue(){matrix.clear();};
+Queue::~Queue() { matrix.clear(); };
 
 void Queue::display()
 {
@@ -25,13 +25,16 @@ void Queue::display()
     };
 };
 
-void Queue::filter(int column, string value){
+void Queue::filter(int column, string value)
+{
     for (int i = 0; i < matrix.size(); i++)
     {
-        for (int j = 0; j < matrix[i].size(); j++)
-            if(value.compare(matrix[i][column])==0)
-            cout << matrix[i][j] << "|\t";
-        cout << endl;
+        if (value.compare(matrix[i][column]) == 0)
+        {
+            for (int j = 0; j < matrix[i].size(); j++)
+
+                cout << matrix[i][j] << "|\t";
+            cout << endl;
+        }
     };
 }
-

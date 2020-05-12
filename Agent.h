@@ -13,6 +13,10 @@ public:
     Agent(string username,string password);
     Agent(User U);
     void mainMenuDisplay() override;
+    void newTicketsDisplay();
+    void newTicketsUpdate();
+    void myTicketsDisplay();
+    void myTicketsUpdate();
 };
 
 #endif // AGENT_H

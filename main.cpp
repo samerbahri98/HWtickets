@@ -15,21 +15,10 @@ using namespace std;
 
 int main()
 {
-    //authentification sequence
-    LoginMenu.display(selector);
-    Agent* loggedAgent;
-    Client* loggedClient;
-    // Admin* loggedAdmin;
-    User* loggedUser= new User(LoginMenuSelection(selector));
-    if (loggedUser->userType!="") isLoggedIn=true;
-    if(loggedUser->userType=="Agent") loggedUser = new Agent(loggedUser);
-    if(loggedUser->userType=="Client") loggedUser = new Client(loggedUser);
-    while(isLoggedIn)loggedUser->mainMenuDisplay();
-
+    mainLoop();
     // Ticket newTicket(LoggedUser->id);
     // newTicket.save();
     // newTicket.updateInput(LoggedUser->id);
-
 
     //
     // Client newClient;

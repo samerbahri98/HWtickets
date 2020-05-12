@@ -14,6 +14,7 @@ void writeCredentials(string &username, string &password);
 extern int selector;
 
 extern bool isLoggedIn;
+extern bool wantsLogOut;
 
 const vector<string> LoginMenuItems = {"Login as a Client",
                                  "Login as an Agent",
@@ -30,4 +31,5 @@ extern Menu LoginMenu;
 
 void areYouSure(string that);
 
+void mainLoop();
 
