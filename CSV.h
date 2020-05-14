@@ -16,6 +16,7 @@ public:
     CSV(string fileName);
     void create(string content);
     void fetch(vector<vector<string>> &matrix);
+    void getLine(int lineNum,vector<string> &row);
     void update(int lineNum, string content);
     int generateId();
 //    void pop(int lineNum);

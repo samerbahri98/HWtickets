@@ -7,8 +7,6 @@
 
 using namespace std;
 
-
-
 CSV::CSV(string fileName) : fileName(fileName) {}
 
 void CSV::create(string content)
@@ -32,9 +30,8 @@ void CSV::fetch(vector<vector<string>> &matrix)
     {
         stringstream ss(line);
         string word;
-        stringstream tempString, tempString2;
+        stringstream tempString;
         tempString << "";
-        tempString2 << "";
         while (ss >> word)
         {
             if (word != ",")
@@ -51,6 +48,7 @@ void CSV::fetch(vector<vector<string>> &matrix)
                 {
                     longString = false;
                     lineArray.push_back(tempString.str());
+                    tempString.str("");
                 }
             }
         }
@@ -60,6 +58,14 @@ void CSV::fetch(vector<vector<string>> &matrix)
     file.close();
 };
 
+void CSV::getLine(int lineNum, vector<string> &row)
+{
+    row={};
+    vector<vector<string>> matrix;
+    fetch(matrix);
+    for (int i = 0; i < matrix[lineNum].size(); i++)
+        row.push_back(matrix[lineNum][i]);
+}
 
 void CSV::update(int lineNum, string content)
 {
@@ -79,7 +85,7 @@ void CSV::update(int lineNum, string content)
     file.close();
     tempFile.close();
     remove(fileName.c_str());
-    rename("temp.csv",fileName.c_str());
+    rename("temp.csv", fileName.c_str());
 }
 
 int CSV::generateId()
@@ -90,5 +96,4 @@ int CSV::generateId()
     int i = matrix.size();
     matrix.clear();
     return i;
-
 }

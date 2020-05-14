@@ -55,9 +55,9 @@ User *LoginMenuSelection(int selector)
 Menu LoginMenu(LoginMenuItems, pleaseSelect);
 
 int selector = 0;
-
 bool isLoggedIn = false;
 bool wantsLogOut = false;
+int sizeOfQueue=0;
 
 void areYouSure(string that)
 {

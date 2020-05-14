@@ -73,8 +73,8 @@ Ticket::Ticket(int id,
                int agent,
                status ticketStatus,
                priority ticketPriority,
-               string content,
-               string title)
+               string title,
+               string content)
     : id(id),
       client(client),
       agent(agent),
@@ -192,7 +192,7 @@ void Ticket::changeStatus()
 
 void Ticket::updateInput(int agentId)
 {
-    vector<string> possibleChanges = {"Accept", "Change Priority", "Change Status", "Close"};
+    vector<string> possibleChanges = {"Accept", "Change Priority", "Change Status", "Close Ticket", "Cancel"};
     Menu possibleChangesMenu(possibleChanges);
     possibleChangesMenu.display(selector);
     switch (selector)
@@ -209,6 +209,7 @@ void Ticket::updateInput(int agentId)
     case 3:
         close(agentId);
         break;
+    case 4: return;
     default:
         break;
     }

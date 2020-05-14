@@ -12,9 +12,12 @@ using namespace std;
 void writeCredentials(string &username, string &password);
 
 extern int selector;
-
 extern bool isLoggedIn;
 extern bool wantsLogOut;
+extern int sizeOfQueue;
+
+void emptyMessage();
+
 
 const vector<string> LoginMenuItems = {"Login as a Client",
                                  "Login as an Agent",

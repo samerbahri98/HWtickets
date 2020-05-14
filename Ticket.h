@@ -23,12 +23,6 @@ typedef enum status
     Closed
 } status;
 
-typedef struct Parameters
-{
-    string value;
-    struct Parameters *next;
-} Parameters;
-
 class Ticket
 {
 public:
@@ -39,11 +33,14 @@ public:
     Ticket(int client);
     Ticket(int id,
            int client,
+           int agent);
+    Ticket(int id,
+           int client,
            int agent,
            status ticketStatus,
            priority ticketPriority,
-           string content,
-           string title);
+           string title,
+           string content);
     void save();
     void updateInput(int agentId);
     void update();
