@@ -18,7 +18,12 @@ void Agent::ticketsDisplay(int column, string value)
 {
     Queue createdQueue("tickets.csv");
     createdQueue.fetch();
+    cout << "id|Client|Agent|Priority|Status|Title|Content|" << endl;
+    cout<<"---------------------------------------------------------"<<endl;
     createdQueue.filter(column, value);
+    createdQueue.map("users.csv", {1, 2}, 1);
+    createdQueue.display();
+    cout<<"N/A: Not Assigned"<<endl;
 }
 
 void Agent::ticketsUpdate(int column, string value)

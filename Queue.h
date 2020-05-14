@@ -18,6 +18,7 @@ public:
     void fetch();
     void display();
     void filter(int column,string value);
+    void map(string fileNameTemp, vector<int>columns,int columnValue);
 };
 
 #endif //QUEUE_H
