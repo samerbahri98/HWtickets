@@ -12,56 +12,9 @@ using namespace std;
 
 Agent::Agent(string username, string password) : User(username, password) { userType = "Agent"; };
 
-Agent::Agent(User U) : User(U) {}
+Agent::Agent(const User &U) : User(U) { userType = "Agent"; }
 
-void Agent::ticketsDisplay(int column, string value)
-{
-    Queue createdQueue("tickets.csv");
-    createdQueue.fetch();
-    cout << "id|Client|Agent|Priority|Status|Title|Content|" << endl;
-    cout<<"---------------------------------------------------------"<<endl;
-    createdQueue.filter(column, value);
-    createdQueue.map("users.csv", {1, 2}, 1);
-    createdQueue.display();
-    cout<<"N/A: Not Assigned"<<endl;
-}
-
-void Agent::ticketsUpdate(int column, string value)
-{
-    cout << "Please write the id of the ticket" << endl;
-    ticketsDisplay(column, value);
-    if (sizeOfQueue != 0)
-    {
-        cin >> selector;
-        vector<string> row;
-        CSV ticketVector("tickets.csv");
-        ticketVector.getLine(selector, row);
-        priority p;
-        if (row[3].at(0) == 'U')
-            p = Urgent;
-        else if (row[3].at(0) == 'H')
-            p = High;
-        else if (row[3].at(0) == 'M')
-            p = Medium;
-        else
-            p = Low;
-
-        status s;
-        if (row[4].at(0) == 'N')
-            s = New;
-        else if (row[4].at(0) == 'O')
-            s = Open;
-        else if (row[4].at(0) == 'P')
-            s = Pending;
-        else
-            s = Closed;
-
-        Ticket updateTicket(stoi(row[0]), stoi(row[1]), stoi(row[2]), s, p, row[5], row[6]);
-        updateTicket.updateInput(id);
-    }
-};
-
-void Agent::mainMenuDisplay()
+void Agent::mainMenuDisplay() const
 {
     int selector;
     vector<string> commands = {"Display new tickets", "Display my tickets", "Display unassigned tickets", "Update new Tickets", "Update my tickets", "Update unassigned tickets", "Close"};

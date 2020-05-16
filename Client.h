@@ -9,9 +9,8 @@ class Client : public User
 {
 public:
     Client(string username,string password);
-    Client(User U);
-    void mainMenuDisplay() override;
-    void createdTickets();
+    Client(const User &U);
+    virtual void mainMenuDisplay() const override ;
 };
 
 #endif //CLIENT_H

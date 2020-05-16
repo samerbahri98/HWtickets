@@ -11,21 +11,9 @@ using namespace std;
 
 Client::Client(string username, string password) : User(username, password) { userType = "Client"; };
 
-Client::Client(User U) : User(U){};
+Client::Client(const User &U) : User(U) { userType = "Client"; };
 
-void Client::createdTickets()
-{
-    Queue createdQueue("tickets.csv");
-    createdQueue.fetch();
-    cout << "id|Client|Agent|Priority|Status|Title|Content|" << endl;
-    cout<<"---------------------------------------------------------"<<endl;
-    createdQueue.filter(1, to_string(id));
-    createdQueue.map("users.csv", {1, 2}, 1);
-    createdQueue.display();
-    cout<<"N/A: Not Assigned"<<endl;
-};
-
-void Client::mainMenuDisplay()
+void Client::mainMenuDisplay() const
 {
     int selector;
     vector<string> commands = {"Create ticket", "Look at created tickets", "Quit"};
@@ -39,7 +27,7 @@ void Client::mainMenuDisplay()
         newTicketNeeded = true;
         break;
     case 1:
-        createdTickets();
+        ticketsDisplay(1, to_string(id));
         break;
     case 2:
         exit(EXIT_SUCCESS);

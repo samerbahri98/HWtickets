@@ -21,43 +21,11 @@ void writeCredentials(string &username, string &password)
     getline(cin, password);
 };
 
-User *LoginMenuSelection(int selector)
-{
-    cin.ignore(); // BUG: the 1st input is being skipped
-    string username, password;
-    writeCredentials(username, password);
-    User *newUser = new User(username, password);
-
-    switch (selector)
-    {
-    case 0:
-        newUser->userType = "Client";
-        newUser->login();
-        break;
-    case 1:
-        newUser->userType = "Agent";
-        newUser->login();
-        break;
-    case 3:
-        newUser->userType = "Client";
-        newUser->signUp();
-        break;
-    case 4:
-        newUser->userType = "Agent";
-        newUser->signUp();
-        break;
-    default:
-        return nullptr;
-        break;
-    }
-    return newUser;
-};
 Menu LoginMenu(LoginMenuItems, pleaseSelect);
-
 int selector = 0;
 bool isLoggedIn = false;
 bool wantsLogOut = false;
-int sizeOfQueue=0;
+int sizeOfQueue = 0;
 
 void areYouSure(string that)
 {
@@ -67,31 +35,56 @@ void areYouSure(string that)
 }
 
 void mainLoop()
-{
-    while (true)
+{ //authentification sequence
+
+    isLoggedIn = false;
+    wantsLogOut = false;
+    LoginMenu.display(selector);
+
+    cin.ignore(); // BUG: the 1st input is being skipped
+    string username, password;
+    writeCredentials(username, password);
+    // User *newUser = new User(username, password);
+    User *newUser = nullptr;
+
+    switch (selector)
     {
-        //authentification sequence
-        isLoggedIn = false;
-        wantsLogOut = false;
-        LoginMenu.display(selector);
-        Agent *loggedAgent;
-        Client *loggedClient;
-        // Admin* loggedAdmin;
-        User *loggedUser = new User(LoginMenuSelection(selector));
-        if (loggedUser->userType != "")
-            isLoggedIn = true;
-        if (loggedUser->userType == "Agent")
-            loggedUser = new Agent(loggedUser);
-        if (loggedUser->userType == "Client")
-            loggedUser = new Client(loggedUser);
-        while (isLoggedIn)
-        {
-            loggedUser->mainMenuDisplay();
-            if (wantsLogOut)
-            {
-                isLoggedIn=false;
-                loggedUser=nullptr;
-            }
-        };
+    case 0:
+        newUser = new Client(username, password);
+        newUser->login();
+        break;
+    case 1:
+        newUser = new Agent(username, password);
+        newUser->login();
+        break;
+    case 2:
+        newUser = new Admin(username, password);
+        newUser->login();
+        break;
+    case 3:
+        newUser = new Client(username, password);
+        newUser->signUp();
+        break;
+    case 4:
+        newUser = new Agent(username, password);
+        newUser->signUp();
+        break;
+    case 5:
+        newUser = new Admin(username, password);
+        newUser->signUp();
+        break;
+    default:
+        break;
     }
+    if (newUser->userType != "")
+        isLoggedIn = true;
+    while (isLoggedIn)
+    {
+        newUser->mainMenuDisplay();
+        if (wantsLogOut)
+        {
+            isLoggedIn = false;
+            newUser = nullptr;
+        }
+    };
 }

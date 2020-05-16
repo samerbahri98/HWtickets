@@ -11,10 +11,9 @@ class Agent : public User
 {
 public:
     Agent(string username, string password);
-    Agent(User U);
-    void mainMenuDisplay() override;
-    void ticketsDisplay(int column, string value);
-    void ticketsUpdate(int column, string value);
+    Agent(const User &U);
+    ~Agent(){};
+    virtual void mainMenuDisplay() const override ;
 };
 
 #endif // AGENT_H

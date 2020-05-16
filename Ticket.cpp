@@ -193,7 +193,7 @@ void Ticket::changeStatus()
 void Ticket::updateInput(int agentId)
 {
     vector<string> possibleChanges = {"Accept", "Change Priority", "Change Status", "Close Ticket", "Cancel"};
-    Menu possibleChangesMenu(possibleChanges);
+    Menu possibleChangesMenu(possibleChanges,pleaseSelect);
     possibleChangesMenu.display(selector);
     switch (selector)
     {

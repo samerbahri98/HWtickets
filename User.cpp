@@ -5,7 +5,10 @@
 #include <vector>
 #include "User.h"
 #include "Menu.h"
+#include "Queue.h"
 #include "CSV.h"
+#include "Controller.h"
+#include "Ticket.h"
 
 using namespace std;
 
@@ -72,7 +75,50 @@ void User::login()
     }
 };
 
-void User::mainMenuDisplay()
+void User::ticketsUpdate(int column, string value) const
 {
-    return;
-}
+    cout << "Please write the id of the ticket" << endl;
+    ticketsDisplay(column, value);
+    if (sizeOfQueue != 0)
+    {
+        cin >> selector;
+        vector<string> row;
+        CSV ticketVector("tickets.csv");
+        ticketVector.getLine(selector, row);
+        priority p;
+        if (row[3].at(0) == 'U')
+            p = Urgent;
+        else if (row[3].at(0) == 'H')
+            p = High;
+        else if (row[3].at(0) == 'M')
+            p = Medium;
+        else
+            p = Low;
+
+        status s;
+        if (row[4].at(0) == 'N')
+            s = New;
+        else if (row[4].at(0) == 'O')
+            s = Open;
+        else if (row[4].at(0) == 'P')
+            s = Pending;
+        else
+            s = Closed;
+
+        Ticket updateTicket(stoi(row[0]), stoi(row[1]), stoi(row[2]), s, p, row[5], row[6]);
+        updateTicket.updateInput(id);
+    }
+};
+
+void User::ticketsDisplay(int column, string value) const
+{
+    Queue createdQueue("tickets.csv");
+    createdQueue.fetch();
+    cout << "id|Client|Agent|Priority|Status|Title|Content|" << endl;
+    cout << "---------------------------------------------------------" << endl;
+    if(column>=0)
+    createdQueue.filter(column, value);
+    createdQueue.map("users.csv", {1, 2}, 1);
+    createdQueue.display();
+    cout << "N/A: Not Assigned" << endl;
+};
