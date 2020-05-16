@@ -1,9 +1,7 @@
 #ifndef CLIENT_H
 #define CLIENT_H
 
-#include <iostream>
-#include <string>
-#include "User.h"
+#include"User.h"
 
 class Client : public User
 {

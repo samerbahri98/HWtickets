@@ -9,7 +9,7 @@ using namespace std;
 
 CSV::CSV(string fileName) : fileName(fileName) {}
 
-void CSV::create(string content)
+void CSV::create(string content) const
 {
     fstream file;
     try
@@ -26,7 +26,7 @@ void CSV::create(string content)
     file.close();
 }
 
-void CSV::fetch(vector<vector<string>> &matrix)
+void CSV::fetch(vector<vector<string>> &matrix) const
 {
     matrix = {};
     bool longString = false;
@@ -75,7 +75,7 @@ void CSV::fetch(vector<vector<string>> &matrix)
     file.close();
 };
 
-void CSV::getLine(int lineNum, vector<string> &row)
+void CSV::getLine(int lineNum, vector<string> &row) const
 {
     row = {};
     vector<vector<string>> matrix;
@@ -84,7 +84,7 @@ void CSV::getLine(int lineNum, vector<string> &row)
         row.push_back(matrix[lineNum][i]);
 }
 
-void CSV::update(int lineNum, string content)
+void CSV::update(int lineNum, string content) const
 {
     fstream file, tempFile;
     try
@@ -121,7 +121,7 @@ void CSV::update(int lineNum, string content)
     rename("temp.csv", fileName.c_str());
 }
 
-int CSV::generateId()
+int CSV::generateId() const
 {
 
     vector<vector<string>> matrix;

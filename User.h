@@ -1,14 +1,11 @@
 #ifndef USER_H
 #define USER_H
 
-#include <iostream>
-#include <string>
-
 using namespace std;
 
-///This is the User Class
-///
-///This class is for users. it has the basic previledges
+//This is the User Class,
+//
+//This class abstracted, the classes Admin, Agent and Client inherit from it.
 class User
 {
 protected:

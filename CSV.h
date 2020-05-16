@@ -1,11 +1,6 @@
 #ifndef CSV_H
 #define CSV_H
 
-#include <iostream>
-#include <string>
-#include <sstream>
-#include <vector>
-
 using namespace std;
 
 inline int generateId(string fileName);
@@ -14,12 +9,11 @@ class CSV
 public:
     string fileName;
     CSV(string fileName);
-    void create(string content);
-    void fetch(vector<vector<string>> &matrix);
-    void getLine(int lineNum,vector<string> &row);
-    void update(int lineNum, string content);
-    int generateId();
-//    void pop(int lineNum);
+    void create(string content) const;
+    void fetch(vector<vector<string>> &matrix) const;
+    void getLine(int lineNum,vector<string> &row) const;
+    void update(int lineNum, string content) const;
+    int generateId() const;
 };
 
 #endif // CSV_H

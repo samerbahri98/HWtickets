@@ -17,7 +17,7 @@ void Queue::fetch()
 
 Queue::~Queue() { matrix.clear(); };
 
-void Queue::display()
+void Queue::display() const
 {
     if (sizeOfQueue == 0)
         cout << "There are no tickets" << endl;

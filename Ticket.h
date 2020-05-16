@@ -1,10 +1,6 @@
 #ifndef TICKET_H
 #define TICKET_H
 
-#include <iostream>
-#include <string>
-#include <sstream>
-#include <vector>
 
 using namespace std;
 
@@ -33,15 +29,12 @@ public:
     Ticket(int client);
     Ticket(int id,
            int client,
-           int agent);
-    Ticket(int id,
-           int client,
            int agent,
            status ticketStatus,
            priority ticketPriority,
            string title,
            string content);
-    void save();
+    void save() const;
     void updateInput(int agentId);
     void update();
     void accept(int agentId);

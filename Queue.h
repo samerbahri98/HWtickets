@@ -1,10 +1,6 @@
 #ifndef QUEUE_H
 #define QUEUE_H
 
-#include <iostream>
-#include <string>
-#include <vector>
-
 using namespace std;
 
 class Queue
@@ -16,7 +12,7 @@ public:
     Queue(string fileName);
     ~Queue();
     void fetch();
-    void display();
+    void display() const;
     void filter(int column,string value);
     void map(string fileNameTemp, vector<int>columns,int columnValue);
 };

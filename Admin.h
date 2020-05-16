@@ -1,10 +1,7 @@
 #ifndef ADMIN_H
 #define ADMIN_H
 
-#include <iostream>
-#include <string>
 #include "User.h"
-
 
 using namespace std;
 

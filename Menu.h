@@ -14,7 +14,7 @@ public:
     string message;
     Menu(vector<string> rows);
     Menu(vector<string> rows , string message);
-    void display(int &option);
+    void display(int &option) const;
     //    void back();
 };
 

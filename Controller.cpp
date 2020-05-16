@@ -93,7 +93,7 @@ void mainLoop()
         loggedUser->mainMenuDisplay();
     //dynamic memory
     delete loggedUser;
-    std::exit(EXIT_SUCCESS);
+    exit(EXIT_SUCCESS);
 }
 
 void writeCredentials(string &username, string &password)

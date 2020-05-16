@@ -1,9 +1,7 @@
 #ifndef AGNET_H
 #define AGENT_H
 
-#include <iostream>
-#include <string>
-#include "User.h"
+#include"User.h"
 
 using namespace std;
 

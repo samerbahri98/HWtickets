@@ -83,7 +83,7 @@ Ticket::Ticket(int id,
       content(content),
       title(title){};
 
-void Ticket::save()
+void Ticket::save() const
 {
     stringstream content;
     content << id << " , "

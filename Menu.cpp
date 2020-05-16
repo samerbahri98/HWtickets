@@ -8,7 +8,7 @@ using namespace std;
 
 Menu::Menu(vector<string> rows) : rows(rows) { message = ""; };
 Menu::Menu(vector<string> rows, string message) : rows(rows), message(message){};
-void Menu::display(int &option)
+void Menu::display(int &option) const
 {
     cout << endl;
     cout << message << endl;
