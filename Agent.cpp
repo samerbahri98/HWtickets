@@ -43,8 +43,9 @@ void Agent::mainMenuDisplay() const
         ticketsUpdate(2, to_string(-1));
         break;
     case 6:
-        exit(EXIT_SUCCESS);
+        isLoggedIn = false;
     default:
+        cout<<impossible<<endl;
         break;
     };
     if (newTicketNeeded)

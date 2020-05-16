@@ -13,6 +13,8 @@ Client::Client(string username, string password) : User(username, password) { us
 
 Client::Client(const User &U) : User(U) { userType = "Client"; };
 
+Client::~Client() {}
+
 void Client::mainMenuDisplay() const
 {
     int selector;
@@ -30,8 +32,9 @@ void Client::mainMenuDisplay() const
         ticketsDisplay(1, to_string(id));
         break;
     case 2:
-        exit(EXIT_SUCCESS);
+        isLoggedIn = false;
     default:
+        cout<<impossible<<endl;
         break;
     };
     if (newTicketNeeded)

@@ -1,9 +1,6 @@
-// Controller.h and Controller.cpp are not files of a class, they are instances of the class Menu.
-
 #include <iostream>
 #include <vector>
 #include <string>
-
 #include "Controller.h"
 #include "Menu.h"
 #include "User.h"
@@ -13,19 +10,35 @@
 
 using namespace std;
 
-void writeCredentials(string &username, string &password)
-{
-    cout << "Please write your username" << endl;
-    getline(cin, username);
-    cout << "Please write your password" << endl;
-    getline(cin, password);
-};
+// Controller.h and Controller.cpp are not files of a class, they are instances of the class Menu.
 
-Menu LoginMenu(LoginMenuItems, pleaseSelect);
+
+//Global variables
 int selector = 0;
 bool isLoggedIn = false;
 bool wantsLogOut = false;
 int sizeOfQueue = 0;
+vector<int> margin={};
+User *loggedUser = nullptr;
+Menu LoginMenu(LoginMenuItems, pleaseSelect);
+
+//Global functions
+void checkSelector(int option){
+    bool test = false;
+    for(int i=0;i<margin.size();i++)
+        if(option==margin[i]){
+            test=true;
+            break;
+        }
+    if(!test){
+        cout<<impossible<<endl;
+        delete loggedUser;
+        throw exception();
+    }
+    else{
+        margin={};
+    }
+}
 
 void areYouSure(string that)
 {
@@ -35,56 +48,58 @@ void areYouSure(string that)
 }
 
 void mainLoop()
-{ //authentification sequence
-
+{ 
+    //declatarions
     isLoggedIn = false;
-    wantsLogOut = false;
-    LoginMenu.display(selector);
-
-    cin.ignore(); // BUG: the 1st input is being skipped
     string username, password;
+    //authentification sequence
+    LoginMenu.display(selector);
+    cin.ignore(); // BUG: the 1st input is being skipped
     writeCredentials(username, password);
-    // User *newUser = new User(username, password);
-    User *newUser = nullptr;
-
     switch (selector)
     {
     case 0:
-        newUser = new Client(username, password);
-        newUser->login();
+        loggedUser = new Client(username, password);
+        loggedUser->login();
         break;
     case 1:
-        newUser = new Agent(username, password);
-        newUser->login();
+        loggedUser = new Agent(username, password);
+        loggedUser->login();
         break;
     case 2:
-        newUser = new Admin(username, password);
-        newUser->login();
+        loggedUser = new Admin(username, password);
+        loggedUser->login();
         break;
     case 3:
-        newUser = new Client(username, password);
-        newUser->signUp();
+        loggedUser = new Client(username, password);
+        loggedUser->signUp();
         break;
     case 4:
-        newUser = new Agent(username, password);
-        newUser->signUp();
+        loggedUser = new Agent(username, password);
+        loggedUser->signUp();
         break;
     case 5:
-        newUser = new Admin(username, password);
-        newUser->signUp();
+        loggedUser = new Admin(username, password);
+        loggedUser->signUp();
         break;
     default:
+        cout<<impossible<<endl;
         break;
     }
-    if (newUser->userType != "")
+    //authorization
+    if (loggedUser->userType != "")
         isLoggedIn = true;
     while (isLoggedIn)
-    {
-        newUser->mainMenuDisplay();
-        if (wantsLogOut)
-        {
-            isLoggedIn = false;
-            newUser = nullptr;
-        }
-    };
+        loggedUser->mainMenuDisplay();
+    //dynamic memory
+    delete loggedUser;
+    std::exit(EXIT_SUCCESS);
 }
+
+void writeCredentials(string &username, string &password)
+{
+    cout << "Please write your username" << endl;
+    getline(cin, username);
+    cout << "Please write your password" << endl;
+    getline(cin, password);
+};

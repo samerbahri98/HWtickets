@@ -10,6 +10,7 @@ class Client : public User
 public:
     Client(string username,string password);
     Client(const User &U);
+    ~Client();
     virtual void mainMenuDisplay() const override ;
 };
 

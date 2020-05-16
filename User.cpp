@@ -81,7 +81,16 @@ void User::ticketsUpdate(int column, string value) const
     ticketsDisplay(column, value);
     if (sizeOfQueue != 0)
     {
-        cin >> selector;
+        try
+        {
+            cin >> selector;
+        }
+        catch (...)
+        {
+            cout << impossible << endl;
+            throw exception();
+        }
+        checkSelector(selector);
         vector<string> row;
         CSV ticketVector("tickets.csv");
         ticketVector.getLine(selector, row);
@@ -116,8 +125,8 @@ void User::ticketsDisplay(int column, string value) const
     createdQueue.fetch();
     cout << "id|Client|Agent|Priority|Status|Title|Content|" << endl;
     cout << "---------------------------------------------------------" << endl;
-    if(column>=0)
-    createdQueue.filter(column, value);
+    if (column >= 0)
+        createdQueue.filter(column, value);
     createdQueue.map("users.csv", {1, 2}, 1);
     createdQueue.display();
     cout << "N/A: Not Assigned" << endl;

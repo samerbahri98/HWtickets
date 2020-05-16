@@ -75,8 +75,9 @@ void Admin::mainMenuDisplay() const
         newTicketNeeded = true;
         break;
     case 11:
-        exit(EXIT_SUCCESS);
+        isLoggedIn = false;
     default:
+        cout << impossible << endl;
         break;
     };
     if (newTicketNeeded)

@@ -24,6 +24,8 @@ void Queue::display()
     else
         for (int i = 0; i < matrix.size(); i++)
         {
+
+            margin.push_back(stoi(matrix[i][0]));
             for (int j = 0; j < matrix[i].size(); j++)
                 cout << matrix[i][j] << "|\t";
             cout << endl;

@@ -211,6 +211,8 @@ void Ticket::updateInput(int agentId)
         break;
     case 4: return;
     default:
+        cout<<impossible<<endl;
+        throw exception();
         break;
     }
     update();

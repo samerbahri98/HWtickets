@@ -12,7 +12,16 @@ CSV::CSV(string fileName) : fileName(fileName) {}
 void CSV::create(string content)
 {
     fstream file;
-    file.open(this->fileName, ios::out | ios::app);
+    try
+    {
+        file.open(this->fileName, ios::out | ios::app);
+    }
+    catch (...)
+    {
+        cout << "Error: could not open file" << endl;
+        throw exception();
+    }
+
     file << content << endl;
     file.close();
 }
@@ -25,7 +34,15 @@ void CSV::fetch(vector<vector<string>> &matrix)
     string line, content, priority, status;
     fstream file;
     vector<string> lineArray;
-    file.open(fileName, ios::in);
+    try
+    {
+        file.open(fileName, ios::in);
+    }
+    catch (...)
+    {
+        cout << "Error: could not open file" << endl;
+        throw exception();
+    }
     while (getline(file, line))
     {
         stringstream ss(line);
@@ -60,7 +77,7 @@ void CSV::fetch(vector<vector<string>> &matrix)
 
 void CSV::getLine(int lineNum, vector<string> &row)
 {
-    row={};
+    row = {};
     vector<vector<string>> matrix;
     fetch(matrix);
     for (int i = 0; i < matrix[lineNum].size(); i++)
@@ -70,8 +87,24 @@ void CSV::getLine(int lineNum, vector<string> &row)
 void CSV::update(int lineNum, string content)
 {
     fstream file, tempFile;
-    file.open(fileName, ios::in);
-    tempFile.open("temp.csv", ios::out);
+    try
+    {
+        file.open(fileName, ios::in);
+    }
+    catch (...)
+    {
+        cout << "Error: could not open file" << endl;
+        throw exception();
+    }
+    try
+    {
+        tempFile.open("temp.csv", ios::out);
+    }
+    catch (...)
+    {
+        cout << "Error: could not open file" << endl;
+        throw exception();
+    }
     string line;
     int i = -1;
     while (getline(file, line))
