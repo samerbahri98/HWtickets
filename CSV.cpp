@@ -6,9 +6,9 @@
 #include "CSV.h"
 
 using namespace std;
-
+//Constructor
 CSV::CSV(string fileName) : fileName(fileName) {}
-
+//add a string (content)to the end of the file
 void CSV::create(string content) const
 {
     fstream file;
@@ -25,7 +25,7 @@ void CSV::create(string content) const
     file << content << endl;
     file.close();
 }
-
+//matrix of strings (matrix) corresponds to all the cells in the CSV file
 void CSV::fetch(vector<vector<string>> &matrix) const
 {
     matrix = {};
@@ -44,36 +44,33 @@ void CSV::fetch(vector<vector<string>> &matrix) const
     }
     while (getline(file, line))
     {
-        stringstream ss(line);
+        stringstream ss(line); //decompose the line into words
         string word;
         stringstream tempString; // for string with space
-        tempString << "";
         while (ss >> word)
         {
-            if (word != ",")
+            if (word != ",") //for columns separation
             {
-                if ((!longString) && (word != "["))
+                if ((!longString) && (word != "[")) //no string with space
                     lineArray.push_back(word);
-                if ((longString) && (word != "]"))
-                {
-                    tempString << " " << word;
-                }
-                if (word == "[")
+                if ((longString) && (word != "]")) //string with space not ended
+                    tempString << " " << word; //add the spaces
+                if (word == "[") //string with space begin
                     longString = true;
-                if (word == "]")
+                if (word == "]") //string with space end
                 {
                     longString = false;
                     lineArray.push_back(tempString.str());
-                    tempString.str("");
+                    tempString.str(""); //empty the string with space
                 }
             }
         }
         matrix.push_back(lineArray);
-        lineArray = {};
+        lineArray = {}; //empty the row
     }
     file.close();
 };
-
+//vector of strings (row) corresponds to the cells in the row (lineNum) in the CSV file
 void CSV::getLine(int lineNum, vector<string> &row) const
 {
     row = {};
@@ -82,7 +79,7 @@ void CSV::getLine(int lineNum, vector<string> &row) const
     for (int i = 0; i < matrix[lineNum].size(); i++)
         row.push_back(matrix[lineNum][i]);
 }
-
+//replace the row (lineNum) by the string content
 void CSV::update(int lineNum, string content) const
 {
     fstream file, tempFile;
@@ -105,7 +102,7 @@ void CSV::update(int lineNum, string content) const
         throw exception();
     }
     string line;
-    int i = -1;
+    int i = -1; //the first line is 0
     while (getline(file, line))
     {
         i++;
@@ -119,7 +116,7 @@ void CSV::update(int lineNum, string content) const
     remove(fileName.c_str());
     rename("temp.csv", fileName.c_str());
 }
-
+//return the number of lines in a file, could be used for unique id
 int CSV::generateId() const
 {
 

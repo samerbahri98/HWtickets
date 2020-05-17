@@ -11,12 +11,12 @@
 #include "Ticket.h"
 
 using namespace std;
-
+//Constructor
 User::User(string userName, string userPassword) : userName(userName), userPassword(userPassword)
 {
     id = -1;
 }
-
+//Copy Constructor
 User::User(const User *U)
 {
     id = U->id;
@@ -24,7 +24,7 @@ User::User(const User *U)
     userName = U->userName;
     userPassword = U->userPassword;
 }
-
+//Save credentials in users.csv, get an id then login
 void User::signUp()
 {
     CSV usersFile("users.csv");
@@ -34,7 +34,7 @@ void User::signUp()
     usersFile.create(ss.str());
     ss.clear();
 };
-
+//Login
 void User::login()
 {
     vector<vector<string>> matrix;
@@ -74,7 +74,7 @@ void User::login()
         exit(EXIT_FAILURE);
     }
 };
-
+//fetch tickets from the tickets.csv, might be filtered (cells in column = value)
 void User::ticketsUpdate(int column, string value) const
 {
     cout << "Please write the id of the ticket" << endl;
@@ -118,7 +118,7 @@ void User::ticketsUpdate(int column, string value) const
         updateTicket.updateInput(id);
     }
 };
-
+//select and update a ticket, the list might be filtered (cells in column = value)
 void User::ticketsDisplay(int column, string value) const
 {
     Queue createdQueue("tickets.csv");
@@ -131,7 +131,7 @@ void User::ticketsDisplay(int column, string value) const
     createdQueue.display();
     cout << "N/A: Not Assigned" << endl;
 };
-
+//create Ticket (default agent = -1 )
 void User::ticketCreate() const
 {
     Ticket newTicket(id);

@@ -9,15 +9,15 @@
 #include "Ticket.h"
 
 using namespace std;
-
+//Constructor
 Admin::Admin(string username, string password)
     : User(username, password)
 {
     userType = "Admin";
 };
-
+//copy Constructor
 Admin::Admin(const User &U) : User(U) { userType = "Admin"; };
-
+//Override from User Class
 void Admin::mainMenuDisplay() const
 {
     vector<string> commands = {"Display new tickets",

@@ -9,13 +9,11 @@
 #include "Queue.h"
 
 using namespace std;
-
+//Constructor
 Client::Client(string username, string password) : User(username, password) { userType = "Client"; };
-
+//copy Constructor
 Client::Client(const User &U) : User(U) { userType = "Client"; };
-
-Client::~Client() {}
-
+//Override from User Class
 void Client::mainMenuDisplay() const
 {
     vector<string> commands = {"Create ticket", "Display created tickets", "Quit"};

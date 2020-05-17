@@ -9,13 +9,13 @@ using namespace std;
 
 class Menu
 {
-public:
     vector<string> rows;
     string message;
-    Menu(vector<string> rows);
-    Menu(vector<string> rows , string message);
-    void display(int &option) const;
-    //    void back();
+public:
+    Menu(vector<string> rows);                 //Constructor without a top message
+    Menu(vector<string> rows, string message); //Contructor with a top message
+    ~Menu();                                   //Destructor
+    void display(int &option) const;           //Display the menu and select the option
 };
 
 #endif // MENU_H

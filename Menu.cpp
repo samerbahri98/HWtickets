@@ -6,12 +6,19 @@
 
 using namespace std;
 
+//Constructor without a top message
 Menu::Menu(vector<string> rows) : rows(rows) { message = ""; };
+//Contructor with a top message
 Menu::Menu(vector<string> rows, string message) : rows(rows), message(message){};
+//Destructor
+Menu::~Menu(){
+    rows.clear();
+}
+//Display the menu and select the option
 void Menu::display(int &option) const
 {
-    cout << endl;
-    cout << message << endl;
+    cout << endl; //empty line to separate between menus
+    cout << message << endl; 
     for (int i = 0; i < rows.size(); i++)
     {
         cout << i << ":\t" << rows[i] << endl;
@@ -27,5 +34,5 @@ void Menu::display(int &option) const
         throw exception();
     }
     cout << endl;
-    checkSelector(option);
+    checkSelector(option);//
 }

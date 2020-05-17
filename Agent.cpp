@@ -9,11 +9,11 @@
 #include "Ticket.h"
 
 using namespace std;
-
+//Constructor
 Agent::Agent(string username, string password) : User(username, password) { userType = "Agent"; };
-
+//copy Constructor
 Agent::Agent(const User &U) : User(U) { userType = "Agent"; }
-
+//Override from User Class
 void Agent::mainMenuDisplay() const
 {
     vector<string> commands = {"Display new tickets", "Display my tickets", "Display unassigned tickets", "Update new Tickets", "Update my tickets", "Update unassigned tickets", "Quit"};

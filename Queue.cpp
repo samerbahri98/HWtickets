@@ -7,16 +7,18 @@
 
 using namespace std;
 
+//Constructor
 Queue::Queue(string fileName) : fileName(fileName) { matrix = {}; };
+//Destructor
+Queue::~Queue() { matrix.clear(); };
+//Pull data from file to matrix
 void Queue::fetch()
 {
     CSV ticketFile(fileName);
     ticketFile.fetch(matrix);
     sizeOfQueue = matrix.size();
 }
-
-Queue::~Queue() { matrix.clear(); };
-
+//Display data
 void Queue::display() const
 {
     if (sizeOfQueue == 0)
@@ -31,12 +33,12 @@ void Queue::display() const
             cout << endl;
         };
 };
-
+//Filter the data in the matrix
 void Queue::filter(int column, string value)
 {
     if (matrix.size() != 0)
     {
-        vector<vector<string>> matrixTemp ={};
+        vector<vector<string>> matrixTemp = {};
         for (int i = 0; i < matrix.size(); i++)
             if (value.compare(matrix[i][column]) == 0)
                 matrixTemp.push_back(matrix[i]);
@@ -44,7 +46,7 @@ void Queue::filter(int column, string value)
         sizeOfQueue = matrix.size();
     }
 }
-
+//Change data from matrix with extrenal data (extrernal keys)
 void Queue::map(string fileNameTemp, vector<int> columns, int columnValue)
 {
     vector<vector<string>> matrixTemp;

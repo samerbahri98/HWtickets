@@ -5,16 +5,16 @@ using namespace std;
 
 class Queue
 {
-public:
     string fileName;
+    vector<vector<string>> matrix;
 
-    vector<vector<string>>matrix;
-    Queue(string fileName);
-    ~Queue();
-    void fetch();
-    void display() const;
-    void filter(int column,string value);
-    void map(string fileNameTemp, vector<int>columns,int columnValue);
+public:
+    Queue(string fileName);                                              //Constructor
+    ~Queue();                                                            //Destructor
+    void fetch();                                                        //Pull data from file to matrix
+    void display() const;                                                //Display data
+    void filter(int column, string value);                               //Filter the data in the matrix
+    void map(string fileNameTemp, vector<int> columns, int columnValue); //Change data from matrix with extrenal data (extrernal keys)
 };
 
 #endif //QUEUE_H

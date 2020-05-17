@@ -13,12 +13,12 @@ using namespace std;
 // Controller.h and Controller.cpp are not files of a class, they are instances of the class Menu.
 
 //Global variables
-int selector = 0;           //initialized, doesn't matter the value
-bool isLoggedIn = false;    //initialized, no logged in user (authentification)
-int sizeOfQueue = 0;        //initialized, no queue yet to calculate the size
-vector<int> margin = {};    //initialized empty
-User *loggedUser = nullptr; //initialized, no logged in user (authorization)
-Menu LoginMenu(LoginMenuItems, pleaseSelect);
+int selector = 0;                             //initialized, doesn't matter the value
+bool isLoggedIn = false;                      //initialized, no logged in user (authentification)
+int sizeOfQueue = 0;                          //initialized, no queue yet to calculate the size
+vector<int> margin = {};                      //initialized empty
+User *loggedUser = nullptr;                   //initialized, no logged in user (authorization)
+Menu LoginMenu(LoginMenuItems, pleaseSelect); //choose the type of user + if it is new or not
 
 //Global functions
 void checkSelector(int option)

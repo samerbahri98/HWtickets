@@ -14,15 +14,15 @@ protected:
 public:
     int id;
     string userType;
-    User(string userName, string userPassword);
-    User(const User *U);
-    ~User(){};
-    void signUp();
-    void login();
-    virtual void mainMenuDisplay() const = 0;
-    void ticketsDisplay(int column, string value) const;
-    void ticketsUpdate(int column, string value) const;
-    void ticketCreate() const;
+    User(string userName, string userPassword);          //Constructor
+    User(const User *U);                                 //Copy Constructor
+    ~User(){};                                           //Destructor
+    void signUp();                                       //Save credentials in users.csv, get an id then login
+    void login();                                        //Login
+    virtual void mainMenuDisplay() const = 0;            //abstract function to navigate the program, will be override by subclasses
+    void ticketsDisplay(int column, string value) const; //fetch tickets from the tickets.csv, might be filtered (cells in column = value)
+    void ticketsUpdate(int column, string value) const;  //select and update a ticket, the list might be filtered (cells in column = value)
+    void ticketCreate() const;                           //create Ticket (default agent = -1 )
 };
 
 #endif // USER_H
