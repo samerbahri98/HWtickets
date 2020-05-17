@@ -2,6 +2,7 @@
 #include <string>
 #include <vector>
 #include "Client.h"
+#include "User.h"
 #include "Menu.h"
 #include "Controller.h"
 #include "Ticket.h"
@@ -17,24 +18,23 @@ Client::~Client() {}
 
 void Client::mainMenuDisplay() const
 {
-    int selector;
     vector<string> commands = {"Create ticket", "Display created tickets", "Quit"};
     Menu mainMenu(commands, pleaseSelect);
-    mainMenu.display(selector);
+    mainMenu.display(selector); //selector is global variable
 
     switch (selector)
     {
     case 0: //Create ticket
-        ticketCreate(); 
+        ticketCreate();
         break;
-    case 1: //Display created tickets
-        ticketsDisplay(1, to_string(id));
+    case 1:                               //Display created tickets
+        ticketsDisplay(1, to_string(id)); //column 1(Client)=id
         break;
     case 2: //Quit
         isLoggedIn = false;
         break;
     default: //impossible input
-        cout<<impossible<<endl; 
+        cout << impossible << endl;
         break;
     };
 

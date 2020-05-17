@@ -14,7 +14,7 @@ void CSV::create(string content) const
     fstream file;
     try
     {
-        file.open(this->fileName, ios::out | ios::app);
+        file.open(fileName, ios::out | ios::app);
     }
     catch (...)
     {
@@ -29,11 +29,10 @@ void CSV::create(string content) const
 void CSV::fetch(vector<vector<string>> &matrix) const
 {
     matrix = {};
-    bool longString = false;
-    int id, client, agent;
-    string line, content, priority, status;
+    bool longString = false; //string with space are between []
+    string line;
     fstream file;
-    vector<string> lineArray;
+    vector<string> lineArray; //rows
     try
     {
         file.open(fileName, ios::in);
@@ -47,7 +46,7 @@ void CSV::fetch(vector<vector<string>> &matrix) const
     {
         stringstream ss(line);
         string word;
-        stringstream tempString;
+        stringstream tempString; // for string with space
         tempString << "";
         while (ss >> word)
         {

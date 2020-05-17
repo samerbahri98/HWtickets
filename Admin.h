@@ -3,16 +3,14 @@
 
 #include "User.h"
 
-using namespace std;
-
 class Admin : public User
 {
 public:
-    Admin(string username, string password);
-    Admin(const User& U);
+    Admin(string username, string password);       //Constructor
+    Admin(const User &U);                          //copy Constructor
+    ~Admin(){};                                    //Destructor
+    virtual void mainMenuDisplay() const override; //Override from User Class
 
-    ~Admin(){};
-    virtual void mainMenuDisplay() const override ;
 };
 
 #endif // ADMIN_H

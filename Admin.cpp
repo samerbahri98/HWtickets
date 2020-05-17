@@ -1,14 +1,12 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include "Agent.h"
 #include "Admin.h"
 #include "User.h"
 #include "Queue.h"
 #include "Menu.h"
 #include "Controller.h"
 #include "Ticket.h"
-#include "CSV.h"
 
 using namespace std;
 
@@ -22,7 +20,6 @@ Admin::Admin(const User &U) : User(U) { userType = "Admin"; };
 
 void Admin::mainMenuDisplay() const
 {
-    int selector;
     vector<string> commands = {"Display new tickets",
                                "Display my tickets",
                                "Display unassigned tickets",
@@ -37,55 +34,48 @@ void Admin::mainMenuDisplay() const
                                "Quit"};
     Menu mainMenu(commands, pleaseSelect);
     mainMenu.display(selector);
-    bool newTicketNeeded = false;
 
     switch (selector)
     {
-    case 0:
-        ticketsDisplay(4, "New");
+    case 0:                       //Display new tickets
+        ticketsDisplay(4, "New"); //column 4(priority)=New
         break;
-    case 1:
-        ticketsDisplay(2, to_string(id));
+    case 1:                               //Display my tickets
+        ticketsDisplay(2, to_string(id)); //column 2(Agent)=id
         break;
-    case 2:
-        ticketsDisplay(2, to_string(-1));
+    case 2:                               //Display unassigned tickets
+        ticketsDisplay(2, to_string(-1)); //column 2(Agent)<0
         break;
-    case 3:
-        ticketsDisplay(1, to_string(id));
+    case 3:                               //Display created tickets
+        ticketsDisplay(1, to_string(id)); //column 1(Client)=id
         break;
-    case 4:
-        ticketsDisplay(-1, "");
+    case 4:                     //Display All tickets
+        ticketsDisplay(-1, ""); //column 1(Client)<0
         break;
-    case 5:
-        ticketsUpdate(4, "New");
+    case 5:                      //Update new Tickets
+        ticketsUpdate(4, "New"); //column 4(priority)=New
         break;
-    case 6:
-        ticketsUpdate(2, to_string(id));
+    case 6:                              //Update my tickets
+        ticketsUpdate(2, to_string(id)); //column 2(Agent)=id
         break;
-    case 7:
-        ticketsUpdate(2, to_string(-1));
+    case 7:                              //Update unassigned tickets
+        ticketsUpdate(2, to_string(-1)); //column 2(Agent)<0
         break;
-    case 8:
-        ticketsUpdate(1, to_string(id));
+    case 8:                              //Update created tickets
+        ticketsUpdate(1, to_string(id)); //column 1(Client)=id
         break;
-    case 9:
-        ticketsUpdate(-1, "");
+    case 9:                    //Update All tickets
+        ticketsUpdate(-1, ""); //column 1(Client)<0
         break;
-    case 10:
-        newTicketNeeded = true;
+    case 10: //Create ticket
+        ticketCreate();
         break;
-    case 11:
+    case 11: //Quit
         isLoggedIn = false;
         break;
-    default:
+    default: //impossible input
         cout << impossible << endl;
         break;
-    };
-    if (newTicketNeeded)
-    {
-        Ticket newTicket(id);
-        newTicket.save();
-        newTicketNeeded = false;
     };
 
     return;

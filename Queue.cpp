@@ -36,7 +36,7 @@ void Queue::filter(int column, string value)
 {
     if (matrix.size() != 0)
     {
-        vector<vector<string>> matrixTemp;
+        vector<vector<string>> matrixTemp ={};
         for (int i = 0; i < matrix.size(); i++)
             if (value.compare(matrix[i][column]) == 0)
                 matrixTemp.push_back(matrix[i]);

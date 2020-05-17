@@ -12,31 +12,36 @@ using namespace std;
 
 // Controller.h and Controller.cpp are not files of a class, they are instances of the class Menu.
 
-
 //Global variables
-int selector = 0;
-bool isLoggedIn = false;
-bool wantsLogOut = false;
-int sizeOfQueue = 0;
-vector<int> margin={};
-User *loggedUser = nullptr;
+int selector = 0;           //initialized, doesn't matter the value
+bool isLoggedIn = false;    //initialized, no logged in user (authentification)
+int sizeOfQueue = 0;        //initialized, no queue yet to calculate the size
+vector<int> margin = {};    //initialized empty
+User *loggedUser = nullptr; //initialized, no logged in user (authorization)
 Menu LoginMenu(LoginMenuItems, pleaseSelect);
 
 //Global functions
-void checkSelector(int option){
+void checkSelector(int option)
+{
+    //option could be selector, but it doesn't have to
     bool test = false;
-    for(int i=0;i<margin.size();i++)
-        if(option==margin[i]){
-            test=true;
+    for (int i = 0; i < margin.size(); i++)
+        if (option == margin[i])
+        {
+            test = true;
             break;
         }
-    if(!test){
-        cout<<impossible<<endl;
+    if (!test)
+    {
+        cout << impossible << endl;
+        //dynamic memory management
         delete loggedUser;
         throw exception();
     }
-    else{
-        margin={};
+    else
+    {
+        //empty the margin
+        margin = {};
     }
 }
 
@@ -48,9 +53,8 @@ void areYouSure(string that)
 }
 
 void mainLoop()
-{ 
+{
     //declatarions
-    isLoggedIn = false;
     string username, password;
     //authentification sequence
     LoginMenu.display(selector);
@@ -83,7 +87,7 @@ void mainLoop()
         loggedUser->signUp();
         break;
     default:
-        cout<<impossible<<endl;
+        cout << impossible << endl;
         break;
     }
     //authorization
