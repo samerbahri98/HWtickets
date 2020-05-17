@@ -131,3 +131,9 @@ void User::ticketsDisplay(int column, string value) const
     createdQueue.display();
     cout << "N/A: Not Assigned" << endl;
 };
+
+void User::ticketCreate() const
+{
+    Ticket newTicket(id);
+    newTicket.save();
+}

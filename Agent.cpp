@@ -44,6 +44,7 @@ void Agent::mainMenuDisplay() const
         break;
     case 6:
         isLoggedIn = false;
+        break;
     default:
         cout<<impossible<<endl;
         break;

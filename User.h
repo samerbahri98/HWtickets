@@ -22,6 +22,7 @@ public:
     virtual void mainMenuDisplay() const = 0;
     void ticketsDisplay(int column, string value) const;
     void ticketsUpdate(int column, string value) const;
+    void ticketCreate() const;
 };
 
 #endif // USER_H

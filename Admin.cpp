@@ -76,6 +76,7 @@ void Admin::mainMenuDisplay() const
         break;
     case 11:
         isLoggedIn = false;
+        break;
     default:
         cout << impossible << endl;
         break;

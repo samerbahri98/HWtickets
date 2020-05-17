@@ -18,30 +18,24 @@ Client::~Client() {}
 void Client::mainMenuDisplay() const
 {
     int selector;
-    vector<string> commands = {"Create ticket", "Look at created tickets", "Quit"};
+    vector<string> commands = {"Create ticket", "Display created tickets", "Quit"};
     Menu mainMenu(commands, pleaseSelect);
     mainMenu.display(selector);
-    bool newTicketNeeded = false;
 
     switch (selector)
     {
-    case 0:
-        newTicketNeeded = true;
+    case 0: //Create ticket
+        ticketCreate(); 
         break;
-    case 1:
+    case 1: //Display created tickets
         ticketsDisplay(1, to_string(id));
         break;
-    case 2:
+    case 2: //Quit
         isLoggedIn = false;
-    default:
-        cout<<impossible<<endl;
         break;
-    };
-    if (newTicketNeeded)
-    {
-        Ticket newTicket(id);
-        newTicket.save();
-        newTicketNeeded = false;
+    default: //impossible input
+        cout<<impossible<<endl; 
+        break;
     };
 
     return;
